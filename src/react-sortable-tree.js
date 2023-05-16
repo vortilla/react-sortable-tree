@@ -568,11 +568,12 @@ class ReactSortableTree extends Component {
   renderRow(
     row,
     rowRenderer,
-    { listIndex, getPrevRow, matchKeys, swapFrom, swapDepth, swapLength }
+    nodeRender
   ) {
     const { node, parentNode, path, lowerSiblingCounts, treeIndex } = row;
     const { index, parent, key, style } = rowRenderer;
-
+    let { listIndex, getPrevRow, matchKeys, swapFrom, swapDepth, swapLength } = nodeRender;
+    listIndex = index;
     console.log("listIndex::", listIndex);
     const {
       canDrag,

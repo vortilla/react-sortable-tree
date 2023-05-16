@@ -2718,13 +2718,7 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
     // calls the onChange callback on the new treeData
   }, {
     key: "renderRow",
-    value: function renderRow(row, rowRenderer, _ref9) {
-      var listIndex = _ref9.listIndex,
-        getPrevRow = _ref9.getPrevRow,
-        matchKeys = _ref9.matchKeys,
-        swapFrom = _ref9.swapFrom,
-        swapDepth = _ref9.swapDepth,
-        swapLength = _ref9.swapLength;
+    value: function renderRow(row, rowRenderer, nodeRender) {
       var node = row.node,
         parentNode = row.parentNode,
         path = row.path,
@@ -2734,6 +2728,13 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
         parent = rowRenderer.parent,
         key = rowRenderer.key,
         style = rowRenderer.style;
+      var listIndex = nodeRender.listIndex,
+        getPrevRow = nodeRender.getPrevRow,
+        matchKeys = nodeRender.matchKeys,
+        swapFrom = nodeRender.swapFrom,
+        swapDepth = nodeRender.swapDepth,
+        swapLength = nodeRender.swapLength;
+      listIndex = index;
       console.log("listIndex::", listIndex);
       var _mergeTheme2 = mergeTheme(this.props),
         canDrag = _mergeTheme2.canDrag,
@@ -2837,8 +2838,8 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
 
       // Get indices for rows that match the search conditions
       var matchKeys = {};
-      searchMatches.forEach(function (_ref10, i) {
-        var path = _ref10.path;
+      searchMatches.forEach(function (_ref9, i) {
+        var path = _ref9.path;
         matchKeys[path[path.length - 1]] = i;
       });
 
@@ -2860,8 +2861,8 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
           height: '100%'
         }, containerStyle);
         var listClassName = 'rst__virtualScrollOverride';
-        var listRowHeight = typeof rowHeight !== 'function' ? rowHeight : function (_ref11) {
-          var index = _ref11.index;
+        var listRowHeight = typeof rowHeight !== 'function' ? rowHeight : function (_ref10) {
+          var index = _ref10.index;
           return rowHeight({
             index: index,
             treeIndex: index,
@@ -2875,9 +2876,9 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
         }
         var ScrollZoneVirtualList = this.scrollZoneVirtualList;
         // Render list with react-virtualized
-        list = /*#__PURE__*/React__default.createElement(reactVirtualized.AutoSizer, null, function (_ref12) {
-          var height = _ref12.height,
-            width = _ref12.width;
+        list = /*#__PURE__*/React__default.createElement(reactVirtualized.AutoSizer, null, function (_ref11) {
+          var height = _ref11.height,
+            width = _ref11.width;
           return /*#__PURE__*/React__default.createElement(ScrollZoneVirtualList, _extends({}, scrollToInfo, {
             dragDropManager: dragDropManager,
             verticalStrength: _this6.vStrength,
@@ -2887,8 +2888,8 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
             className: listClassName,
             width: width,
             height: height,
-            onScroll: function onScroll(_ref13) {
-              var scrollTop = _ref13.scrollTop;
+            onScroll: function onScroll(_ref12) {
+              var scrollTop = _ref12.scrollTop;
               _this6.scrollTop = scrollTop;
             },
             style: innerStyle,
@@ -2896,11 +2897,11 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
             estimatedRowSize: typeof rowHeight !== 'function' ? rowHeight : undefined,
             deferredMeasurementCache: _this6.isDynamicRowHeight ? _this6.cellMeasureCache : undefined,
             rowHeight: listRowHeight,
-            rowRenderer: function rowRenderer(_ref14) {
-              var index = _ref14.index,
-                parent = _ref14.parent,
-                key = _ref14.key,
-                style = _ref14.style;
+            rowRenderer: function rowRenderer(_ref13) {
+              var index = _ref13.index,
+                parent = _ref13.parent,
+                key = _ref13.key,
+                style = _ref13.style;
               return _this6.renderRow(rows[index], {
                 index: index,
                 parent: parent,
@@ -3046,11 +3047,11 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
       walk({
         treeData: instanceProps.treeData,
         getNodeKey: props.getNodeKey,
-        callback: function callback(_ref15) {
-          var node = _ref15.node,
-            path = _ref15.path,
-            lowerSiblingCounts = _ref15.lowerSiblingCounts,
-            treeIndex = _ref15.treeIndex;
+        callback: function callback(_ref14) {
+          var node = _ref14.node,
+            path = _ref14.path,
+            lowerSiblingCounts = _ref14.lowerSiblingCounts,
+            treeIndex = _ref14.treeIndex;
           // If the node has children defined by a function, and is either expanded
           //  or set to load even before expansion, run the function.
           if (node.children && typeof node.children === 'function' && (node.expanded || props.loadCollapsedLazyChildren)) {
@@ -3065,8 +3066,8 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
                 return props.onChange(changeNodeAtPath({
                   treeData: instanceProps.treeData,
                   path: path,
-                  newNode: function newNode(_ref16) {
-                    var oldNode = _ref16.node;
+                  newNode: function newNode(_ref15) {
+                    var oldNode = _ref15.node;
                     return (
                       // Only replace the old node if it's the one we set off to find children
                       //  for in the first place
@@ -3225,8 +3226,8 @@ ReactSortableTree.defaultProps = {
 };
 polyfill(ReactSortableTree);
 var SortableTreeWithoutDndContext = /*#__PURE__*/React.forwardRef(function (props, ref) {
-  return /*#__PURE__*/React__default.createElement(reactDnd.DndContext.Consumer, null, function (_ref17) {
-    var dragDropManager = _ref17.dragDropManager;
+  return /*#__PURE__*/React__default.createElement(reactDnd.DndContext.Consumer, null, function (_ref16) {
+    var dragDropManager = _ref16.dragDropManager;
     return dragDropManager === undefined ? null : /*#__PURE__*/React__default.createElement(ReactSortableTree, _extends({}, props, {
       ref: ref,
       dragDropManager: dragDropManager
