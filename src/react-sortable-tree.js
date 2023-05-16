@@ -841,7 +841,7 @@ ReactSortableTree.propTypes = {
   // `subtitle` is a secondary label for the node
   // `expanded` shows children of the node if true, or hides them if false. Defaults to false.
   // `children` is an array of child nodes belonging to the node.
-  treeData: PropTypes.arrayOf(object).isRequired,
+  treeData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 
   // Style applied to the container wrapping the tree (style defaults to {height: '100%'})
   style: PropTypes.shape({}),
