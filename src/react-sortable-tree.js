@@ -9,7 +9,12 @@ import React, { Component, forwardRef } from 'react';
 import { DndContext, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { polyfill } from 'react-lifecycles-compat';
-import { AutoSizer, List } from 'react-virtualized';
+import {
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+  List,
+} from 'react-virtualized';
 import 'react-virtualized/styles.css';
 import NodeRendererDefault from './node-renderer-default';
 import PlaceholderRendererDefault from './placeholder-renderer-default';
@@ -36,12 +41,6 @@ import {
   toggleExpandedForAll,
   walk,
 } from './utils/tree-data-utils';
-import {
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache,
-  List,
-} from 'react-virtualized';
 
 let treeIdCounter = 1;
 
@@ -841,7 +840,7 @@ ReactSortableTree.propTypes = {
   // `subtitle` is a secondary label for the node
   // `expanded` shows children of the node if true, or hides them if false. Defaults to false.
   // `children` is an array of child nodes belonging to the node.
-  treeData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  treeData: PropTypes.arrayOf([]).isRequired,
 
   // Style applied to the container wrapping the tree (style defaults to {height: '100%'})
   style: PropTypes.shape({}),
