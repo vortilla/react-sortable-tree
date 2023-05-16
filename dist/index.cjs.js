@@ -2734,6 +2734,7 @@ var ReactSortableTree = /*#__PURE__*/function (_Component) {
         parent = rowRenderer.parent,
         key = rowRenderer.key,
         style = rowRenderer.style;
+      console.log("listIndex::", listIndex);
       var _mergeTheme2 = mergeTheme(this.props),
         canDrag = _mergeTheme2.canDrag,
         generateNodeProps = _mergeTheme2.generateNodeProps,
@@ -3095,7 +3096,7 @@ ReactSortableTree.propTypes = {
   // `subtitle` is a secondary label for the node
   // `expanded` shows children of the node if true, or hides them if false. Defaults to false.
   // `children` is an array of child nodes belonging to the node.
-  treeData: PropTypes.arrayOf([]).isRequired,
+  treeData: PropTypes.arrayOf(object).isRequired,
   // Style applied to the container wrapping the tree (style defaults to {height: '100%'})
   style: PropTypes.shape({}),
   // Class name for the container wrapping the tree

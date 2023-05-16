@@ -1,9 +1,9 @@
 module.exports = {
-  extends: ['eslint-config-airbnb', 'prettier', 'prettier/react'],
+  extends: ["eslint-config-airbnb", "prettier", "prettier/react", "plugin:storybook/recommended"],
   parser: 'babel-eslint',
   env: {
     browser: true,
-    jest: true,
+    jest: true
   },
   rules: {
     'react/destructuring-assignment': 0,
@@ -14,6 +14,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
     'no-shadow': 0,
-    'jsx-a11y/label-has-associated-control': 0,
-  },
+    'jsx-a11y/label-has-associated-control': 0
+  }
 };

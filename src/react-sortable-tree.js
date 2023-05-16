@@ -573,6 +573,7 @@ class ReactSortableTree extends Component {
     const { node, parentNode, path, lowerSiblingCounts, treeIndex } = row;
     const { index, parent, key, style } = rowRenderer;
 
+    console.log("listIndex::", listIndex);
     const {
       canDrag,
       generateNodeProps,
@@ -840,7 +841,7 @@ ReactSortableTree.propTypes = {
   // `subtitle` is a secondary label for the node
   // `expanded` shows children of the node if true, or hides them if false. Defaults to false.
   // `children` is an array of child nodes belonging to the node.
-  treeData: PropTypes.arrayOf([]).isRequired,
+  treeData: PropTypes.arrayOf(object).isRequired,
 
   // Style applied to the container wrapping the tree (style defaults to {height: '100%'})
   style: PropTypes.shape({}),
